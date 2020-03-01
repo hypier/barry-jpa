@@ -1,6 +1,6 @@
 package fun.barryhome.jpa;
 
-import fun.barryhome.jpa.domain.Order;
+import fun.barryhome.jpa.domain.SaleOrder;
 import fun.barryhome.jpa.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,12 +23,12 @@ public class OrderController {
     private OrderRepository orderRepository;
 
     @GetMapping(path = "/query")
-    public List<Order> query(){
+    public List<SaleOrder> query(){
         return orderRepository.findAll();
     }
 
     @PostMapping(path = "add")
-    public Order add(@RequestBody Order order){
-        return orderRepository.save(order);
+    public SaleOrder add(@RequestBody SaleOrder saleOrder){
+        return orderRepository.save(saleOrder);
     }
 }

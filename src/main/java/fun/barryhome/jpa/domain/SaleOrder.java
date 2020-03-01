@@ -1,15 +1,18 @@
 package fun.barryhome.jpa.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -22,8 +25,8 @@ import java.util.List;
  */
 @Data
 @Entity
-@Table(name = "sale_order")
-public class Order {
+@Builder
+public class SaleOrder implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,15 +48,9 @@ public class Order {
      */
     private String orderState;
     /**
-     * 订单地址
-     */
-//    @Transient
-    @ManyToOne
-    private Address address;
-    /**
      * 订单明细
      */
-//    @Transient
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "saleOrderCode", referencedColumnName = "orderCode")
     private List<OrderDetail> orderDetailList;
 }
