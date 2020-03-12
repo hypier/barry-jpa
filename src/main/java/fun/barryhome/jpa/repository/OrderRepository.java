@@ -1,5 +1,6 @@
 package fun.barryhome.jpa.repository;
 
+import fun.barryhome.jpa.domain.Address;
 import fun.barryhome.jpa.domain.SaleOrder;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -13,4 +14,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface OrderRepository extends JpaRepository<SaleOrder, Integer> {
+
+    SaleOrder findByAddress(Address address);
 }

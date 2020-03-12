@@ -48,6 +48,10 @@ public class SaleOrder implements Serializable {
      */
     private String orderState;
     /**
+     * 地址
+     */
+    private Address address;
+    /**
      * 订单明细
      */
     @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
