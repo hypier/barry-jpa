@@ -1,5 +1,7 @@
 package fun.barryhome.jpa;
 
+import fun.barryhome.jpa.domain.SaleOrder;
+import fun.barryhome.jpa.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

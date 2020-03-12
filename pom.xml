@@ -5,6 +5,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>jpa-section-1</module>
+        <module>jpa-section-2</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
