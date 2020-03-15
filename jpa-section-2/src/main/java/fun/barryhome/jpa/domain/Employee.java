@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -24,6 +25,7 @@ import javax.persistence.ManyToOne;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(exclude = "department")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,5 +37,6 @@ public class Employee {
 
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "departmentCode", referencedColumnName = "departmentCode")
     private Department department;
 }
