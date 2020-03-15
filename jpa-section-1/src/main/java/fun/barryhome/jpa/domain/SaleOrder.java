@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -47,6 +48,7 @@ public class SaleOrder implements Serializable {
     /**
      * 地址
      */
+    @ManyToOne
     private Address address;
     /**
      * 订单明细
