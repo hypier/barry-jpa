@@ -48,7 +48,9 @@ public class DepartmentTest {
 
     @Test
     public void query(){
-        Department one = departmentRepository.getOne(2);
-        System.err.println(one);
+        Department one = departmentRepository.getOne(1);
+//        one.getEmployeeList().remove(0);
+        departmentRepository.delete(one);
+        //System.err.println(one);
     }
 }
