@@ -31,14 +31,14 @@ public class DepartmentTest {
         Employee employee = Employee.builder()
                 .employeeCode("E001")
                 .employeeName("员工1")
-                .department(department)
+//                .department(department)
                 .build();
         List<Employee> employeeList = new ArrayList<>();
         employeeList.add(employee);
         employeeList.add(Employee.builder()
                 .employeeCode("E002")
                 .employeeName("员工2")
-                .department(department)
+//                .department(department)
                 .build());
 
         department.setEmployeeList(employeeList);

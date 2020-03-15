@@ -1,18 +1,12 @@
 package fun.barryhome.jpa.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 /**
  * Created on 2020/3/12 0012 22:06
@@ -20,12 +14,9 @@ import javax.persistence.ManyToOne;
  * @author Administrator
  * Description:
  */
-@Builder
 @Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString(exclude = "department")
+@Builder
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,9 +25,4 @@ public class Employee {
     private String employeeCode;
 
     private String employeeName;
-
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "departmentCode", referencedColumnName = "departmentCode")
-    private Department department;
 }

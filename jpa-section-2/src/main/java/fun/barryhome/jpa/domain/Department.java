@@ -1,9 +1,7 @@
 package fun.barryhome.jpa.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -24,8 +22,6 @@ import java.util.List;
 @Entity
 @Data
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class Department implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,8 +31,7 @@ public class Department implements Serializable {
 
     private String departmentName;
 
-    @OneToMany(cascade =  CascadeType.ALL)
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "departmentCode", referencedColumnName = "departmentCode")
     private List<Employee> employeeList;
-
 }
