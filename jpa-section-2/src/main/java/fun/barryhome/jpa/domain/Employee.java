@@ -1,11 +1,15 @@
 package fun.barryhome.jpa.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  * Created on 2020/3/12 0012 22:06
@@ -13,8 +17,11 @@ import javax.persistence.Id;
  * @author Administrator
  * Description:
  */
+@Builder
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,4 +30,7 @@ public class Employee {
     private String employeeCode;
 
     private String employeeName;
+
+    @ManyToOne(targetEntity = Department.class)
+    private Department department;
 }
