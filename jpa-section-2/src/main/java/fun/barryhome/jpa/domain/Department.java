@@ -34,7 +34,7 @@ public class Department {
 
     private String departmentName;
 
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.ALL}, targetEntity = Employee.class)
+    @OneToMany(cascade =  CascadeType.ALL, mappedBy = "department")
 //    @JoinColumn(name = "departmentCode", referencedColumnName = "departmentCode")
     private List<Employee> employeeList;
 

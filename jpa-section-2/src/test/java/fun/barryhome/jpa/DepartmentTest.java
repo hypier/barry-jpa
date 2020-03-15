@@ -31,6 +31,7 @@ public class DepartmentTest {
         Employee employee = Employee.builder()
                 .employeeCode("E001")
                 .employeeName("员工1")
+                .department(department)
                 .build();
         List<Employee> employeeList = new ArrayList<>();
         employeeList.add(employee);
