@@ -5,10 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * Created on 2020/3/12 0012 22:06
@@ -29,4 +32,8 @@ public class Employee {
     private String employeeCode;
 
     private String employeeName;
+
+    @ManyToOne
+    @JoinColumn(name = "departmentCode", referencedColumnName = "departmentCode")
+    private Department department;
 }

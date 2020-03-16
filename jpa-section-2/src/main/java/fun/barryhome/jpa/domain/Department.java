@@ -35,7 +35,7 @@ public class Department implements Serializable {
 
     private String departmentName;
 
-    @OneToMany(cascade = {CascadeType.ALL})
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     @JoinColumn(name = "departmentCode", referencedColumnName = "departmentCode")
     private List<Employee> employeeList;
 }
