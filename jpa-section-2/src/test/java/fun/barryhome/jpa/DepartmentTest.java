@@ -1,7 +1,9 @@
 package fun.barryhome.jpa;
 
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import fun.barryhome.jpa.domain.Department;
 import fun.barryhome.jpa.domain.Employee;
+import fun.barryhome.jpa.domain.QDepartment;
 import fun.barryhome.jpa.repository.DepartmentRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,5 +54,18 @@ public class DepartmentTest {
 //        one.getEmployeeList().remove(0);
         departmentRepository.delete(one);
         //System.err.println(one);
+    }
+
+    @Autowired
+    private JPAQueryFactory jpaQueryFactory;
+
+    @Test
+    public void queryForDsl(){
+        QDepartment qDepartment = QDepartment.department;
+
+        Department d001 = jpaQueryFactory.select(qDepartment).from(qDepartment)
+                .where(qDepartment.departmentCode.eq("D001")).fetchOne();
+
+        System.err.println(d001);
     }
 }
