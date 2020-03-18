@@ -7,4 +7,6 @@ package fun.barryhome.jpa.domain.product;
  * Description:
  */
 public abstract class AbstractProduct {
+
+
 }

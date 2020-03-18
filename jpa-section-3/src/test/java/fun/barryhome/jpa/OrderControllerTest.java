@@ -4,6 +4,8 @@ import fun.barryhome.jpa.domain.Member;
 import fun.barryhome.jpa.domain.OrderDetail;
 import fun.barryhome.jpa.domain.SaleOrder;
 import fun.barryhome.jpa.domain.enums.OrderState;
+import fun.barryhome.jpa.domain.product.Book;
+import fun.barryhome.jpa.domain.product.Food;
 import fun.barryhome.jpa.domain.valueobject.Address;
 import fun.barryhome.jpa.domain.valueobject.Station;
 import fun.barryhome.jpa.domain.valueobject.Storage;
@@ -78,12 +80,24 @@ class OrderControllerTest {
                 .discount(BigDecimal.ONE)
                 .salePrice(BigDecimal.ONE)
                 .quantity(1)
+                .abstractProduct(Book.builder().BookIsbn("B001").build())
                 .build();
 
         list.add(orderDetail);
+        list.add(OrderDetail.builder()
+                .discount(BigDecimal.ONE)
+                .salePrice(BigDecimal.ONE)
+                .quantity(1)
+                .abstractProduct(Food.builder().foodCode("F001").build())
+                .build());
 
         saleOrder.setOrderDetailList(list);
 
         orderRepository.save(saleOrder);
+    }
+
+    @Test
+    void query(){
+        System.err.println(orderRepository.getOne(4));
     }
 }

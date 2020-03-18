@@ -1,11 +1,14 @@
 package fun.barryhome.jpa.domain;
 
+import fun.barryhome.jpa.domain.converter.ProductConverter;
 import fun.barryhome.jpa.domain.product.AbstractProduct;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,7 +36,9 @@ public class OrderDetail {
     /**
      * 产品
      */
-    //private AbstractProduct abstractProduct;
+    @Column(name = "product_code")
+    @Convert(converter = ProductConverter.class)
+    private AbstractProduct abstractProduct;
 
     /**
      * 数量
