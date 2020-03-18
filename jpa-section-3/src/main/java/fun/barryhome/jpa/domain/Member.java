@@ -1,6 +1,9 @@
 package fun.barryhome.jpa.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,7 +15,10 @@ import javax.persistence.Id;
  * Description:
  */
 @Data
+@Builder
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Member {
 
     /**

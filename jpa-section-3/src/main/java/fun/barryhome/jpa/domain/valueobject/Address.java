@@ -1,6 +1,9 @@
 package fun.barryhome.jpa.domain.valueobject;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Embeddable;
 
@@ -11,6 +14,9 @@ import javax.persistence.Embeddable;
  * Description:
  */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Embeddable
 public class Address {
 

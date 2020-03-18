@@ -60,25 +60,25 @@ public class SaleOrder implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date saleTime;
 
-//    /**
-//     * 调入站点
-//     */
-//    @Embedded
-//    @AttributeOverrides({
-//            @AttributeOverride(name = "stationCode", column = @Column(name = "in_station_code")),
-//            @AttributeOverride(name = "storage.storageCode", column = @Column(name = "in_storage_code"))
-//    })
-//    private Station inStation;
-//
-//    /**
-//     * 调出站点
-//     */
-//    @Embedded
-//    @AttributeOverrides({
-//            @AttributeOverride(name = "stationCode", column = @Column(name = "out_station_code")),
-//            @AttributeOverride(name = "storage.storageCode", column = @Column(name = "out_storage_code"))
-//    })
-//    private Station outStation;
+    /**
+     * 调入站点
+     */
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "stationCode", column = @Column(name = "in_station_code")),
+            @AttributeOverride(name = "storage.storageCode", column = @Column(name = "in_storage_code"))
+    })
+    private Station inStation;
+
+    /**
+     * 调出站点
+     */
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "stationCode", column = @Column(name = "out_station_code")),
+            @AttributeOverride(name = "storage.storageCode", column = @Column(name = "out_storage_code"))
+    })
+    private Station outStation;
 
     /**
      * 地址
@@ -89,6 +89,7 @@ public class SaleOrder implements Serializable {
      * 会员
      */
     @ManyToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "memberCode", referencedColumnName = "memberCode")
     private Member member;
 
     /**
