@@ -18,10 +18,10 @@ import javax.persistence.Transient;
  */
 @AllArgsConstructor
 @NoArgsConstructor
-@Embeddable
 @Data
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Embeddable
 public class Station {
 
     /**
@@ -37,7 +37,7 @@ public class Station {
     private String stationName;
 
     /**
-     * 库位号
+     * 库位
      */
     private Storage storage;
 

@@ -17,7 +17,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Book extends AbstractProduct{
 
-    private String BookIsbn;
+    private String bookIsbn;
 
-    private String BookName;
+    private String bookName;
+
+    private String author;
+
+    private boolean isMagazine(){
+        return true;
+    }
 }

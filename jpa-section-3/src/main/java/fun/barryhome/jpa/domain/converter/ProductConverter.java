@@ -31,7 +31,7 @@ public class ProductConverter implements AttributeConverter<AbstractProduct, Str
     @Override
     public AbstractProduct convertToEntityAttribute(String dbData) {
         if (dbData.startsWith("B")) {
-            return Book.builder().BookIsbn(dbData).build();
+            return Book.builder().bookIsbn(dbData).build();
         } else {
             return Food.builder().foodCode(dbData).build();
         }

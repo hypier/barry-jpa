@@ -20,4 +20,10 @@ public class Food extends AbstractProduct {
     private String foodCode;
 
     private String foodName;
+
+    private Integer expiryDate;
+
+    private boolean isExpires(){
+        return false;
+    }
 }

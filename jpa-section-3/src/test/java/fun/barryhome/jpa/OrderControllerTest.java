@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -56,6 +57,7 @@ class OrderControllerTest {
 
 
         SaleOrder saleOrder = SaleOrder.builder()
+                .saleTime(LocalDateTime.now())
                 .orderCode(UUID.randomUUID().toString())
                 .orderState(OrderState.SUCCEED)
                 .tradeAmount(BigDecimal.ONE)
@@ -80,7 +82,7 @@ class OrderControllerTest {
                 .discount(BigDecimal.ONE)
                 .salePrice(BigDecimal.ONE)
                 .quantity(1)
-                .abstractProduct(Book.builder().BookIsbn("B001").build())
+                .abstractProduct(Book.builder().bookIsbn("B001").build())
                 .build();
 
         list.add(orderDetail);

@@ -12,6 +12,7 @@ import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -26,6 +27,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -57,8 +59,7 @@ public class SaleOrder implements Serializable {
     /**
      * 销售时间
      */
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date saleTime;
+    private LocalDateTime saleTime;
 
     /**
      * 调入站点
