@@ -5,6 +5,7 @@ import fun.barryhome.jpa.domain.product.Book;
 import fun.barryhome.jpa.domain.product.Food;
 
 import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
 
 /**
  * Created on 2020/3/18 0018 22:53
@@ -12,6 +13,7 @@ import javax.persistence.AttributeConverter;
  * @author Administrator
  * Description:
  */
+@Converter(autoApply=true)
 public class ProductConverter implements AttributeConverter<AbstractProduct, String> {
 
     @Override

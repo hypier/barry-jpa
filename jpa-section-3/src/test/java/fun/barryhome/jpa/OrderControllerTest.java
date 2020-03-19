@@ -98,6 +98,6 @@ class OrderControllerTest {
 
     @Test
     void query(){
-        System.err.println(orderRepository.getOne(4));
+        System.err.println(orderRepository.getOne(1));
     }
 }
