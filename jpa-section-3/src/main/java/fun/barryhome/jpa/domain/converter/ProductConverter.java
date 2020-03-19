@@ -13,7 +13,7 @@ import javax.persistence.Converter;
  * @author Administrator
  * Description:
  */
-@Converter(autoApply=true)
+//@Converter(autoApply=true)
 public class ProductConverter implements AttributeConverter<AbstractProduct, String> {
 
     @Override

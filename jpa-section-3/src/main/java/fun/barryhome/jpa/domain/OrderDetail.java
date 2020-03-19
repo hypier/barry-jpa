@@ -37,7 +37,7 @@ public class OrderDetail {
      * 产品
      */
     @Column(name = "product_code")
-//    @Convert(converter = ProductConverter.class)
+    @Convert(converter = ProductConverter.class)
     private AbstractProduct abstractProduct;
 
     /**
