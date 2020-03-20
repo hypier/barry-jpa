@@ -4,6 +4,7 @@ import fun.barryhome.jpa.domain.Member;
 import fun.barryhome.jpa.domain.StoreMember;
 import fun.barryhome.jpa.domain.WeXinMember;
 import fun.barryhome.jpa.repository.MemberRepository;
+import fun.barryhome.jpa.repository.WeXinMemberRepository;
 import org.hibernate.Hibernate;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ import java.util.UUID;
 
 /**
  * Created on 2020/3/1 0001 17:53
- * https://www.logicbig.com/tutorials/java-ee-tutorial/jpa/mapped-super-class.html
+ *
  * @author Administrator
  * Description:
  */
@@ -24,8 +25,11 @@ class MemberTest {
     @Autowired
     private MemberRepository memberRepository;
 
+    @Autowired
+    private WeXinMemberRepository weXinMemberRepository;
+
     @Test
-    public void storeAdd(){
+    public void storeAdd() {
         StoreMember storeMember = new StoreMember();
         storeMember.setMemberCode("S001");
         storeMember.setMemberName("线下会员");
@@ -37,7 +41,7 @@ class MemberTest {
     }
 
     @Test
-    public void weXinAdd(){
+    public void weXinAdd() {
         WeXinMember weXinMember = new WeXinMember();
         weXinMember.setMemberCode("W001");
         weXinMember.setMemberName("微信会员");
@@ -50,7 +54,7 @@ class MemberTest {
 
 
     @Test
-    public void query(){
+    public void query() {
         Member member = memberRepository.getOne("W001");
 
         if (Hibernate.unproxy(member) instanceof WeXinMember) {
@@ -66,5 +70,12 @@ class MemberTest {
 
             System.err.println(storeMember);
         }
+    }
+
+    @Test
+    public void wxQuery() {
+        WeXinMember weXinMember = weXinMemberRepository.getOne("W001");
+
+        System.err.println(weXinMember);
     }
 }

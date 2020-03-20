@@ -10,5 +10,5 @@
 
 
 [2]: https://oscimg.oschina.net/oscnet/up-8969dabd3beeba071b59e61139a2bb8b22f.JPEG
-
+[3]: https://www.logicbig.com/tutorials/java-ee-tutorial/jpa/mapped-super-class.html
 
