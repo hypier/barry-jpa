@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
@@ -24,7 +22,6 @@ import javax.persistence.InheritanceType;
 @Entity
 @ToString
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn
 @AllArgsConstructor
 @NoArgsConstructor
 public class Member {

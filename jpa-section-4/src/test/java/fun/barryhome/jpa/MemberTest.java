@@ -31,6 +31,7 @@ class MemberTest {
         storeMember.setMemberName("线下会员");
         storeMember.setMemberType("store");
         storeMember.setMemberCard("S00001");
+        storeMember.setMemberLevel(2);
 
         memberRepository.save(storeMember);
     }
@@ -41,6 +42,7 @@ class MemberTest {
         weXinMember.setMemberCode("W001");
         weXinMember.setMemberName("微信会员");
         weXinMember.setMemberType("wexin");
+        weXinMember.setNickName("twoDog");
         weXinMember.setOpenId(UUID.randomUUID().toString());
 
         memberRepository.save(weXinMember);

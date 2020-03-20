@@ -2,10 +2,8 @@ package fun.barryhome.jpa.domain;
 
 import lombok.Data;
 import lombok.ToString;
-import org.hibernate.annotations.DiscriminatorOptions;
 
 import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
@@ -18,6 +16,7 @@ import javax.persistence.Entity;
 @Data
 @Entity
 @ToString(callSuper = true)
+@DiscriminatorColumn(name = "member_type")
 @DiscriminatorValue("wexin")
 public class WeXinMember extends Member{
 
@@ -25,4 +24,8 @@ public class WeXinMember extends Member{
      * openId
      */
     private String openId;
+    /**
+     * 昵称
+     */
+    private String nickName;
 }
