@@ -56,5 +56,13 @@ class MemberTest {
 
             System.err.println(weXinMember);
         }
+
+        Member member2 = memberRepository.getOne("S001");
+
+        if (Hibernate.unproxy(member2) instanceof StoreMember) {
+            StoreMember storeMember = (StoreMember) (Hibernate.unproxy(member2));
+
+            System.err.println(storeMember);
+        }
     }
 }

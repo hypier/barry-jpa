@@ -17,7 +17,6 @@ import javax.persistence.Entity;
 @Entity
 @ToString(callSuper = true)
 @DiscriminatorValue("store")
-@DiscriminatorOptions
 public class StoreMember extends Member {
 
     private String memberCard;

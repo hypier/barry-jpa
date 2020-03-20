@@ -19,7 +19,6 @@ import javax.persistence.Entity;
 @Entity
 @ToString(callSuper = true)
 @DiscriminatorValue("wexin")
-@DiscriminatorOptions
 public class WeXinMember extends Member{
 
     /**
