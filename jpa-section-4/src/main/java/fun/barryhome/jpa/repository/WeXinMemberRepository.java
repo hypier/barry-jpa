@@ -14,4 +14,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface WeXinMemberRepository extends JpaRepository<WeXinMember, String> {
 
+    WeXinMember findFirstByMemberName(String memberName);
+
+    WeXinMember findFirstByNickName(String nickName);
+
+    WeXinMember findFirstByMemberCode(String memberCode);
 }

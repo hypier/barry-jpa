@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
 import java.util.UUID;
 
 
@@ -33,7 +34,6 @@ class MemberTest {
         StoreMember storeMember = new StoreMember();
         storeMember.setMemberCode("S001");
         storeMember.setMemberName("线下会员");
-        storeMember.setMemberType("store");
         storeMember.setMemberCard("S00001");
         storeMember.setMemberLevel(2);
 
@@ -45,11 +45,16 @@ class MemberTest {
         WeXinMember weXinMember = new WeXinMember();
         weXinMember.setMemberCode("W001");
         weXinMember.setMemberName("微信会员");
-        weXinMember.setMemberType("wexin");
         weXinMember.setNickName("twoDog");
         weXinMember.setOpenId(UUID.randomUUID().toString());
 
         memberRepository.save(weXinMember);
+    }
+
+    @Test
+    public void add(){
+        storeAdd();
+        weXinAdd();
     }
 
 
@@ -60,6 +65,7 @@ class MemberTest {
         if (Hibernate.unproxy(member) instanceof WeXinMember) {
             WeXinMember weXinMember = (WeXinMember) (Hibernate.unproxy(member));
 
+            //memberRepository.delete(weXinMember);
             System.err.println(weXinMember);
         }
 
@@ -70,12 +76,37 @@ class MemberTest {
 
             System.err.println(storeMember);
         }
+
+        WeXinMember member3 = memberRepository.findFirstByMemberCode("W001");
+
+        System.err.println(member3);
     }
 
     @Test
     public void wxQuery() {
-        WeXinMember weXinMember = weXinMemberRepository.getOne("W001");
+        WeXinMember weXinMember = memberRepository.findFirstByMemberCode("W001");
 
         System.err.println(weXinMember);
+    }
+
+    @Test
+    public void wxQuery2() {
+        WeXinMember weXinMember = weXinMemberRepository.findFirstByNickName("twoDog");
+
+        System.err.println(weXinMember);
+    }
+
+    @Test
+    public void storeQuery() {
+        StoreMember storeMember = memberRepository.findTop1ByMemberCode("S001");
+
+        System.err.println(storeMember);
+    }
+
+    @Test
+    public void queryAll() {
+        List<Member> list = memberRepository.findAll();
+
+        System.err.println(list);
     }
 }
