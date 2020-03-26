@@ -27,7 +27,14 @@ public class ApplicationEventProcessor {
     @Async
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT, condition = "#saleOrderEvent.getState().toString() == 'SUCCEED'")
     public void saleOrderCreated(SaleOrderEvent saleOrderEvent){
-        throw new RuntimeException("failed");
-//        System.err.println("sale-event:" + saleOrderEvent);
+//        throw new RuntimeException("succeed ");
+        System.err.println("sale-event succeed:" + saleOrderEvent);
+    }
+
+    @Async
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_ROLLBACK, classes = SaleOrderEvent.class)
+    public void saleOrderCreatedFailed(SaleOrderEvent saleOrderEvent){
+//        throw new RuntimeException("failed");
+        System.out.println("sale-event failed:" + saleOrderEvent);
     }
 }

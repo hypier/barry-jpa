@@ -1,13 +1,12 @@
 package fun.barryhome.jpa.domain;
 
-import fun.barryhome.jpa.domain.Department;
-import fun.barryhome.jpa.domain.SaleOrder;
 import fun.barryhome.jpa.domain.event.DepartmentEvent;
 import fun.barryhome.jpa.repository.DepartmentRepository;
 import fun.barryhome.jpa.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -28,15 +27,18 @@ public class ApplicationService {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private PlatformTransactionManager transactionManager;
+
 
     @Transactional(rollbackFor = Exception.class)
-    public void departmentAdd(Department department){
+    public void departmentAdd(Department department) {
         departmentRepository.save(department);
         applicationEventPublisher.publishEvent(new DepartmentEvent(department));
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public void saleOrderAdd(SaleOrder saleOrder){
+    public void saleOrderAdd(SaleOrder saleOrder) {
         orderRepository.save(saleOrder);
     }
 }

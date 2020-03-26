@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.data.domain.AfterDomainEventPublication;
 import org.springframework.data.domain.DomainEvents;
 
 import javax.persistence.CascadeType;
@@ -24,6 +25,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created on 2020/2/28 0028 17:09
@@ -68,9 +71,12 @@ public class SaleOrder implements Serializable {
     private List<OrderDetail> orderDetailList;
 
     @DomainEvents
-    public List<SaleOrderEvent> domainEvents(){
-        List<SaleOrderEvent> events = new ArrayList<>();
-        events.add(new SaleOrderEvent(this));
-        return events;
+    public List<Object> domainEvents(){
+        return Stream.of(new SaleOrderEvent(this)).collect(Collectors.toList());
+    }
+
+    @AfterDomainEventPublication
+    void callback() {
+        System.err.println("ok");
     }
 }

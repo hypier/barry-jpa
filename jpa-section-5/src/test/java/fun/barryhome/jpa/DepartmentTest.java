@@ -55,6 +55,7 @@ public class DepartmentTest {
     public void saleAdd() {
         SaleOrder saleOrder = SaleOrder.builder()
                 .orderCode(UUID.randomUUID().toString())
+                .orderCode("6dc9f637-290a-4f11-a79b-bc1b33cccdbd")
                 .state(State.SUCCEED)
                 .tradeAmount(BigDecimal.ONE)
                 .build();
