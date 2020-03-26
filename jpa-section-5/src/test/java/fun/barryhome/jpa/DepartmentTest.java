@@ -1,14 +1,20 @@
 package fun.barryhome.jpa;
 
+import fun.barryhome.jpa.domain.ApplicationService;
 import fun.barryhome.jpa.domain.Department;
 import fun.barryhome.jpa.domain.Employee;
+import fun.barryhome.jpa.domain.OrderDetail;
+import fun.barryhome.jpa.domain.SaleOrder;
+import fun.barryhome.jpa.domain.enums.State;
 import fun.barryhome.jpa.repository.DepartmentRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created on 2020/3/12 0012 22:11
@@ -19,7 +25,7 @@ import java.util.List;
 @SpringBootTest
 public class DepartmentTest {
     @Autowired
-    private DepartmentRepository departmentRepository;
+    private ApplicationService applicationService;
 
     @Test
     public void add(){
@@ -31,26 +37,41 @@ public class DepartmentTest {
         Employee employee = Employee.builder()
                 .employeeCode("E001")
                 .employeeName("员工1")
-//                .department(department)
                 .build();
         List<Employee> employeeList = new ArrayList<>();
         employeeList.add(employee);
         employeeList.add(Employee.builder()
                 .employeeCode("E002")
                 .employeeName("员工2")
-//                .department(department)
                 .build());
 
         department.setEmployeeList(employeeList);
+        department.setState(State.SUCCEED);
 
-        departmentRepository.save(department);
+        applicationService.departmentAdd(department);
     }
 
     @Test
-    public void query(){
-        Department one = departmentRepository.getOne(1);
-//        one.getEmployeeList().remove(0);
-        departmentRepository.delete(one);
-        //System.err.println(one);
+    public void saleAdd() {
+        SaleOrder saleOrder = SaleOrder.builder()
+                .orderCode(UUID.randomUUID().toString())
+                .state(State.SUCCEED)
+                .tradeAmount(BigDecimal.ONE)
+                .build();
+
+        List<OrderDetail> list = new ArrayList<>();
+        OrderDetail orderDetail = OrderDetail.builder()
+                .discount(BigDecimal.ONE)
+                .productCode("001")
+                .salePrice(BigDecimal.ONE)
+                .quantity(1)
+                .build();
+
+        list.add(orderDetail);
+
+        saleOrder.setOrderDetailList(list);
+
+        applicationService.saleOrderAdd(saleOrder);
     }
+
 }
