@@ -9,10 +9,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.math.BigDecimal;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
- * Created on 2020/2/28 0028 17:11
+ * Created on 2020/3/12 0012 22:06
  *
  * @author Administrator
  * Description:
@@ -22,25 +23,16 @@ import java.math.BigDecimal;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderDetail {
-
+public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer orderDetailId;
-    /**
-     * 产品编码
-     */
-    private String productCode;
-    /**
-     * 数量
-     */
-    private Integer quantity;
-    /**
-     * 售价
-     */
-    private BigDecimal salePrice;
-    /**
-     * 折扣
-     */
-    private BigDecimal discount;
+    private Integer employeeId;
+
+    private String employeeCode;
+
+    private String employeeName;
+
+    @ManyToOne
+    @JoinColumn(name = "departmentCode", referencedColumnName = "departmentCode")
+    private Department department;
 }

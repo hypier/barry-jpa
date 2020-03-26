@@ -50,11 +50,7 @@ public class SaleOrder implements Serializable {
      * 订单状态
      */
     private String orderState;
-    /**
-     * 地址
-     */
-    @ManyToOne
-    private Address address;
+
     /**
      * 订单明细
      */
