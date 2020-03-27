@@ -20,21 +20,31 @@ public class ApplicationEventProcessor {
     @Async
     @EventListener(condition = "#departmentEvent.getState().toString() == 'SUCCEED'")
     public void departmentCreated(DepartmentEvent departmentEvent){
-        throw new RuntimeException("failed");
-//        System.err.println("dept-event:" + departmentEvent);
+        System.err.println("dept-event1:" + departmentEvent);
     }
+
+    @Async
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT,condition = "#departmentEvent.getState().toString() == 'SUCCEED'")
+    public void departmentCreatedSucceed(DepartmentEvent departmentEvent){
+        System.err.println("dept-event2:" + departmentEvent);
+    }
+
+    @Async
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_ROLLBACK,condition = "#departmentEvent.getState().toString() == 'SUCCEED'")
+    public void departmentCreatedFailed(DepartmentEvent departmentEvent){
+        System.err.println("dept-event3:" + departmentEvent);
+    }
+
 
     @Async
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT, condition = "#saleOrderEvent.getState().toString() == 'SUCCEED'")
     public void saleOrderCreated(SaleOrderEvent saleOrderEvent){
-//        throw new RuntimeException("succeed ");
         System.err.println("sale-event succeed:" + saleOrderEvent);
     }
 
     @Async
-    @TransactionalEventListener(phase = TransactionPhase.AFTER_ROLLBACK, classes = SaleOrderEvent.class)
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_ROLLBACK)
     public void saleOrderCreatedFailed(SaleOrderEvent saleOrderEvent){
-//        throw new RuntimeException("failed");
         System.out.println("sale-event failed:" + saleOrderEvent);
     }
 }

@@ -35,10 +35,12 @@ public class ApplicationService {
     public void departmentAdd(Department department) {
         departmentRepository.save(department);
         applicationEventPublisher.publishEvent(new DepartmentEvent(department));
+//        throw new RuntimeException("failed");
     }
 
     @Transactional(rollbackFor = Exception.class)
     public void saleOrderAdd(SaleOrder saleOrder) {
         orderRepository.save(saleOrder);
+        throw new RuntimeException("failed");
     }
 }
