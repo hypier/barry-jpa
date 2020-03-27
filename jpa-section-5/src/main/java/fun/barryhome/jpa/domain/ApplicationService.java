@@ -41,6 +41,6 @@ public class ApplicationService {
     @Transactional(rollbackFor = Exception.class)
     public void saleOrderAdd(SaleOrder saleOrder) {
         orderRepository.save(saleOrder);
-        throw new RuntimeException("failed");
+//        throw new RuntimeException("failed");
     }
 }

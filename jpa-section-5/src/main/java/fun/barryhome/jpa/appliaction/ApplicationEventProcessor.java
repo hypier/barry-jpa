@@ -19,32 +19,41 @@ public class ApplicationEventProcessor {
 
     @Async
     @EventListener(condition = "#departmentEvent.getState().toString() == 'SUCCEED'")
-    public void departmentCreated(DepartmentEvent departmentEvent){
+    public void departmentCreated(DepartmentEvent departmentEvent) {
         System.err.println("dept-event1:" + departmentEvent);
+        throw new RuntimeException("failed");
     }
 
     @Async
-    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT,condition = "#departmentEvent.getState().toString() == 'SUCCEED'")
-    public void departmentCreatedSucceed(DepartmentEvent departmentEvent){
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT, condition = "#departmentEvent.getState().toString() == 'SUCCEED'")
+    public void departmentCreatedSucceed(DepartmentEvent departmentEvent) {
         System.err.println("dept-event2:" + departmentEvent);
     }
 
     @Async
-    @TransactionalEventListener(phase = TransactionPhase.AFTER_ROLLBACK,condition = "#departmentEvent.getState().toString() == 'SUCCEED'")
-    public void departmentCreatedFailed(DepartmentEvent departmentEvent){
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_ROLLBACK, condition = "#departmentEvent.getState().toString() == 'SUCCEED'")
+    public void departmentCreatedFailed(DepartmentEvent departmentEvent) {
         System.err.println("dept-event3:" + departmentEvent);
     }
 
 
     @Async
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT, condition = "#saleOrderEvent.getState().toString() == 'SUCCEED'")
-    public void saleOrderCreated(SaleOrderEvent saleOrderEvent){
+    public void saleOrderCreated(SaleOrderEvent saleOrderEvent) {
         System.err.println("sale-event succeed:" + saleOrderEvent);
+        throw new RuntimeException("failed 1");
+    }
+
+    @Async
+    @TransactionalEventListener(phase = TransactionPhase.BEFORE_COMMIT, condition = "#saleOrderEvent.getState().toString() == 'SUCCEED'")
+    public void saleOrderCreatedBefore(SaleOrderEvent saleOrderEvent) {
+        System.err.println("sale-event succeed:" + saleOrderEvent);
+        throw new RuntimeException("failed 2");
     }
 
     @Async
     @TransactionalEventListener(phase = TransactionPhase.AFTER_ROLLBACK)
-    public void saleOrderCreatedFailed(SaleOrderEvent saleOrderEvent){
+    public void saleOrderCreatedFailed(SaleOrderEvent saleOrderEvent) {
         System.out.println("sale-event failed:" + saleOrderEvent);
     }
 }
