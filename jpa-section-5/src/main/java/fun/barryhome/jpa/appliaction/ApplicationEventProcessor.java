@@ -21,7 +21,7 @@ public class ApplicationEventProcessor {
     @EventListener(condition = "#departmentEvent.getState().toString() == 'SUCCEED'")
     public void departmentCreated(DepartmentEvent departmentEvent) {
         System.err.println("dept-event1:" + departmentEvent);
-        throw new RuntimeException("failed");
+        //throw new RuntimeException("failed");
     }
 
     @Async
@@ -40,15 +40,15 @@ public class ApplicationEventProcessor {
     @Async
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT, condition = "#saleOrderEvent.getState().toString() == 'SUCCEED'")
     public void saleOrderCreated(SaleOrderEvent saleOrderEvent) {
-        System.err.println("sale-event succeed:" + saleOrderEvent);
-        throw new RuntimeException("failed 1");
+        System.err.println("sale-event succeed1:" + saleOrderEvent);
+//        throw new RuntimeException("failed 1");
     }
 
     @Async
     @TransactionalEventListener(phase = TransactionPhase.BEFORE_COMMIT, condition = "#saleOrderEvent.getState().toString() == 'SUCCEED'")
     public void saleOrderCreatedBefore(SaleOrderEvent saleOrderEvent) {
-        System.err.println("sale-event succeed:" + saleOrderEvent);
-        throw new RuntimeException("failed 2");
+        System.err.println("sale-event succeed2:" + saleOrderEvent);
+//        throw new RuntimeException("failed 2");
     }
 
     @Async

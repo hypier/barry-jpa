@@ -6,7 +6,7 @@ import fun.barryhome.jpa.domain.Employee;
 import fun.barryhome.jpa.domain.OrderDetail;
 import fun.barryhome.jpa.domain.SaleOrder;
 import fun.barryhome.jpa.domain.enums.State;
-import fun.barryhome.jpa.repository.DepartmentRepository;
+import fun.barryhome.jpa.repository.OrderRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,6 +26,9 @@ import java.util.UUID;
 public class DepartmentTest {
     @Autowired
     private ApplicationService applicationService;
+
+    @Autowired
+    private OrderRepository orderRepository;
 
     @Test
     public void add(){
@@ -73,6 +76,14 @@ public class DepartmentTest {
         saleOrder.setOrderDetailList(list);
 
         applicationService.saleOrderAdd(saleOrder);
+    }
+
+    @Test
+    public void querySale(){
+
+        SaleOrder order = orderRepository.getOne(2);
+
+        orderRepository.delete(order);
     }
 
 }

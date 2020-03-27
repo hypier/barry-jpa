@@ -18,15 +18,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Created on 2020/2/28 0028 17:09
@@ -72,7 +69,7 @@ public class SaleOrder implements Serializable {
 
     @DomainEvents
     public List<Object> domainEvents(){
-        return Stream.of(new SaleOrderEvent(this)).collect(Collectors.toList());
+        return Collections.singletonList(new SaleOrderEvent(this));
     }
 
     @AfterDomainEventPublication
