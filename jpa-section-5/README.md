@@ -175,7 +175,7 @@ public void departmentCreatedFailed(DepartmentEvent departmentEvent) {
 - 此注解需要配合`@EnableAsync`一起使用
 
 ## 四、 总结
-通过对**@DomainEvents**、**@TransactionalEventListener**的使用，在有效的解决领域事件发布的情况下，减少了对业务代码的入侵，同时尽一步解决了数据一致性问题。
+通过对 **@DomainEvents**、**@TransactionalEventListener**的使用，在有效的解决领域事件发布的情况下，减少了对业务代码的入侵，同时尽一步解决了数据一致性问题。
 在分布式结构下，通过MQ发送事件通知给其它服务，为解决一致性问题，防止对方服务处理失败可先将事件保久化到数据库后，再重试。
 
 ## 五、 源码
